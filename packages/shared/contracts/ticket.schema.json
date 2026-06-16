@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/contracts/ticket.schema.json",
+  "title": "Ticket",
+  "type": "object",
+  "required": ["id", "customer", "plan", "channel", "subject", "body", "status", "priority", "createdAt", "slaDueAt", "tags"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^TCK-[0-9]+$" },
+    "customer": { "type": "string", "minLength": 1 },
+    "plan": { "type": "string", "minLength": 1 },
+    "channel": { "type": "string", "enum": ["email", "slack", "portal", "chat"] },
+    "subject": { "type": "string", "minLength": 1 },
+    "body": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["open", "triage", "waiting_on_agent", "approved", "rejected", "escalated"] },
+    "priority": { "type": "string", "enum": ["low", "normal", "high", "urgent"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "slaDueAt": { "type": "string", "format": "date-time" },
+    "tags": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  },
+  "additionalProperties": false
+}

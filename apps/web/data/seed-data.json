@@ -1,0 +1,172 @@
+{
+  "policy": {
+    "autoSendConfidenceThreshold": 0.82,
+    "approvalRequiredTopics": ["billing", "legal", "security", "refund", "cancellation", "angry_customer"],
+    "blockedActions": ["issue_refund", "cancel_contract", "change_sso_config", "share_security_details"],
+    "supportLeadRole": "support_lead"
+  },
+  "tickets": [
+    {
+      "id": "TCK-1001",
+      "customer": "Northstar Analytics",
+      "plan": "Growth",
+      "channel": "email",
+      "subject": "Password reset link expired",
+      "body": "I requested a password reset but the link expired before I could use it. Can you send a new one?",
+      "status": "open",
+      "priority": "normal",
+      "createdAt": "2026-06-12T08:40:00Z",
+      "slaDueAt": "2026-06-12T18:40:00Z",
+      "tags": ["account_access", "password"]
+    },
+    {
+      "id": "TCK-1002",
+      "customer": "Apex Grid",
+      "plan": "Enterprise",
+      "channel": "slack",
+      "subject": "SSO outage for all users",
+      "body": "Our SAML SSO users cannot sign in after the certificate rotation. This is blocking our finance team.",
+      "status": "triage",
+      "priority": "urgent",
+      "createdAt": "2026-06-12T09:10:00Z",
+      "slaDueAt": "2026-06-12T10:10:00Z",
+      "tags": ["sso", "enterprise", "security"]
+    },
+    {
+      "id": "TCK-1003",
+      "customer": "BrightLedger",
+      "plan": "Starter",
+      "channel": "email",
+      "subject": "Cancel and refund my subscription",
+      "body": "Your product is not working for us. Cancel the account and refund the last invoice today.",
+      "status": "open",
+      "priority": "high",
+      "createdAt": "2026-06-12T11:05:00Z",
+      "slaDueAt": "2026-06-12T16:05:00Z",
+      "tags": ["billing", "refund", "cancellation", "angry_customer"]
+    },
+    {
+      "id": "TCK-1004",
+      "customer": "OrbitOps",
+      "plan": "Growth",
+      "channel": "portal",
+      "subject": "Conflicting export limits in docs",
+      "body": "One article says CSV exports are capped at 50k rows and another says 100k rows. Which is correct?",
+      "status": "open",
+      "priority": "normal",
+      "createdAt": "2026-06-12T13:22:00Z",
+      "slaDueAt": "2026-06-13T01:22:00Z",
+      "tags": ["exports", "documentation_conflict"]
+    },
+    {
+      "id": "TCK-1005",
+      "customer": "Helio CRM",
+      "plan": "Growth",
+      "channel": "email",
+      "subject": "Can we map custom renewal fields?",
+      "body": "We need to map renewal probability and owner notes from our CRM. I cannot find documentation for this field mapping.",
+      "status": "waiting_on_agent",
+      "priority": "normal",
+      "createdAt": "2026-06-12T15:15:00Z",
+      "slaDueAt": "2026-06-13T03:15:00Z",
+      "tags": ["crm", "field_mapping", "missing_knowledge"]
+    }
+  ],
+  "knowledgeArticles": [
+    {
+      "id": "KB-001",
+      "title": "Resetting a user password",
+      "productArea": "account_access",
+      "body": "Password reset links expire after 30 minutes. Users can request a new link from the sign-in page. Support can resend the standard reset email but must not set a password for the user.",
+      "sourceUrl": "https://docs.example.local/account/password-reset",
+      "owner": "support-ops",
+      "lastReviewedAt": "2026-05-28",
+      "freshnessStatus": "fresh",
+      "version": "4.2"
+    },
+    {
+      "id": "KB-002",
+      "title": "SAML SSO certificate rotation",
+      "productArea": "security",
+      "body": "Enterprise SAML SSO issues after certificate rotation require escalation to a support lead and security engineer. Support may collect IdP metadata and error timestamps but must not change SSO settings without approval.",
+      "sourceUrl": "https://docs.example.local/security/saml-rotation",
+      "owner": "security",
+      "lastReviewedAt": "2026-04-20",
+      "freshnessStatus": "review_due",
+      "version": "2.8"
+    },
+    {
+      "id": "KB-003",
+      "title": "Refund and cancellation policy",
+      "productArea": "billing",
+      "body": "Refund requests and cancellations require support lead approval. The agent may acknowledge the request and collect invoice details, but it cannot issue refunds or cancel contracts automatically.",
+      "sourceUrl": "https://docs.example.local/billing/refunds-cancellations",
+      "owner": "finance-ops",
+      "lastReviewedAt": "2026-06-01",
+      "freshnessStatus": "fresh",
+      "version": "3.1"
+    },
+    {
+      "id": "KB-004",
+      "title": "CSV export row limits",
+      "productArea": "exports",
+      "body": "Growth plan CSV exports are capped at 50000 rows per export. Enterprise exports can be raised by support operations after approval.",
+      "sourceUrl": "https://docs.example.local/exports/row-limits",
+      "owner": "product-ops",
+      "lastReviewedAt": "2025-12-05",
+      "freshnessStatus": "stale",
+      "version": "1.7"
+    },
+    {
+      "id": "KB-005",
+      "title": "Legacy export limit announcement",
+      "productArea": "exports",
+      "body": "Growth plan CSV exports support up to 100000 rows during the beta export program.",
+      "sourceUrl": "https://docs.example.local/exports/legacy-beta-limit",
+      "owner": "growth",
+      "lastReviewedAt": "2025-08-14",
+      "freshnessStatus": "stale",
+      "version": "0.9"
+    },
+    {
+      "id": "KB-006",
+      "title": "CRM field mapping overview",
+      "productArea": "integrations",
+      "body": "Standard CRM mappings include account name, renewal date, lifecycle stage, and account owner. Custom renewal probability fields are not documented and should be tracked as a knowledge gap.",
+      "sourceUrl": "https://docs.example.local/integrations/crm-field-mapping",
+      "owner": "integrations",
+      "lastReviewedAt": "2026-03-18",
+      "freshnessStatus": "review_due",
+      "version": "2.4"
+    }
+  ],
+  "auditEvents": [
+    {
+      "id": "AUD-9001",
+      "actor": "agent",
+      "action": "draft_created",
+      "targetId": "TCK-1001",
+      "timestamp": "2026-06-12T08:41:18Z",
+      "summary": "Drafted password reset response from KB-001.",
+      "policySnapshot": "auto-send allowed above confidence threshold"
+    },
+    {
+      "id": "AUD-9002",
+      "actor": "policy_engine",
+      "action": "approval_required",
+      "targetId": "TCK-1002",
+      "timestamp": "2026-06-12T09:11:03Z",
+      "summary": "Blocked auto-send because ticket includes enterprise SSO and security risk.",
+      "policySnapshot": "security topic requires support lead approval"
+    },
+    {
+      "id": "AUD-9003",
+      "actor": "support_lead",
+      "action": "escalated",
+      "targetId": "TCK-1002",
+      "timestamp": "2026-06-12T09:13:40Z",
+      "summary": "Escalated to security engineer with metadata request.",
+      "policySnapshot": "human approval recorded"
+    }
+  ]
+}

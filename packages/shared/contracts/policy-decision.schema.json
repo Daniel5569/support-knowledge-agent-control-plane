@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/contracts/policy-decision.schema.json",
+  "title": "PolicyDecision",
+  "type": "object",
+  "required": ["draftId", "allowAutoSend", "requiresApproval", "escalationReason", "blockedActions", "reviewerRole"],
+  "properties": {
+    "draftId": { "type": "string", "pattern": "^DRF-[0-9]+$" },
+    "allowAutoSend": { "type": "boolean" },
+    "requiresApproval": { "type": "boolean" },
+    "escalationReason": { "type": "string" },
+    "blockedActions": { "type": "array", "items": { "type": "string" } },
+    "reviewerRole": { "type": "string" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,23 @@
+services:
+  web:
+    image: node:22-alpine
+    working_dir: /workspace
+    command: sh -c "npm install && npm run dev -- --hostname 0.0.0.0"
+    ports:
+      - "3000:3000"
+    environment:
+      MOCK_DATA_MODE: "true"
+      AGENT_ENGINE_URL: "http://agent:8080"
+    volumes:
+      - ./:/workspace
+    depends_on:
+      - agent
+
+  agent:
+    image: python:3.12-slim
+    working_dir: /workspace/services/agent
+    command: python -m support_agent.worker
+    environment:
+      MOCK_DATA_MODE: "true"
+    volumes:
+      - ./:/workspace

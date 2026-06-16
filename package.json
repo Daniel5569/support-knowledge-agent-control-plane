@@ -1,0 +1,33 @@
+{
+  "name": "support-knowledge-agent-control-plane",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Governed AI support knowledge base control plane for B2B SaaS startups.",
+  "scripts": {
+    "dev": "next dev apps/web",
+    "build": "next build apps/web",
+    "lint": "node tools/lint-repo.mjs",
+    "test:contracts": "node tools/test-contracts.mjs",
+    "test:agent": "node tools/run-python-tests.mjs",
+    "security": "node tools/security-check.mjs",
+    "compose:check": "node tools/compose-check.mjs",
+    "check": "node tools/check.mjs",
+    "check:full": "node tools/check.mjs --full"
+  },
+  "dependencies": {
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.32",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "^9.29.0",
+    "eslint-config-next": "^15.3.4",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}
