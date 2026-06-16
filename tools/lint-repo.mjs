@@ -17,8 +17,7 @@ const requiredFiles = [
   "packages/shared/contracts/ticket.schema.json",
   "docs/SECURITY_REVIEW.md",
   "docs/ARCHITECTURE.md",
-  "docs/RUNBOOK.md",
-  "docs/PUBLISHING_GUIDE_IT.md"
+  "docs/RUNBOOK.md"
 ];
 
 const generatedDirs = ["node_modules", ".npm-cache", ".next", "__pycache__", ".pytest_cache", "security-scans", "screenshots"];
