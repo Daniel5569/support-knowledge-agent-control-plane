@@ -1,5 +1,13 @@
 # Support Knowledge Agent Control Plane
 
+[![CI](https://github.com/Daniel5569/support-knowledge-agent-control-plane/actions/workflows/ci.yml/badge.svg)](https://github.com/Daniel5569/support-knowledge-agent-control-plane/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+![Node](https://img.shields.io/badge/node-%E2%89%A520-blue.svg)
+![Python](https://img.shields.io/badge/python-%E2%89%A53.12-blue.svg)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Daniel5569/support-knowledge-agent-control-plane&root-directory=apps/web)
+
+
 A governed AI support agent for B2B SaaS teams that drafts cited replies from approved knowledge, enforces policy rules before any action is taken, and records every decision in an audit trail — so AI reduces ticket load without silently making unsafe calls. The system pairs a Next.js 15 control dashboard with a deterministic Python retrieval-and-drafting engine, sharing typed JSON Schema contracts across both boundaries.
 
 - Keyword-intersection retrieval that is deterministic by design so unit tests can assert exact article ranking, not probabilistic output
