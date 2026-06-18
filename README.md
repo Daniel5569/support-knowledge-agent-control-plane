@@ -284,6 +284,24 @@ npm run check:full   # same suite plus npm audit
 
 Full documentation: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/RUNBOOK.md](docs/RUNBOOK.md) · [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md)
 
+
+## Architecture Decisions
+
+**Why deterministic keyword-intersection retrieval instead of embedding-based search?**
+Embedding search is probabilistic — the same query can return different results across model versions. Deterministic keyword intersection means a unit test can assert the exact ranked article list for a given ticket. This is critical for a compliance-oriented support system: the behavior must be auditable and reproducible, not dependent on a model that may change under you. LLM embeddings are a valid upgrade path; the retrieval interface is a clean boundary for that swap.
+
+**Why composable risk flags instead of a single LLM judge?**
+A single LLM judge makes a holistic decision — but when it blocks a draft, the operator cannot see which rule triggered it or why. Composable flags (stale-doc detection, contradiction detection, sensitive-topic classification, SLA scoring) run independently and contribute to a single policy decision. Each flag is testable in isolation, the final decision is auditable, and adding a new risk rule does not require re-training or re-prompting the whole system.
+
+**Why JSON Schema contracts between TypeScript and Python?**
+Shared types expressed in code (TypeScript interfaces, Python dataclasses) diverge silently when two runtimes evolve independently. JSON Schema is a language-neutral contract that both runtimes validate against at the boundary. Schema drift becomes a CI failure, not a runtime error discovered in production.
+
+**Why block actions before human approval instead of logging them after?**
+Logging after the fact means the action already happened. A refund was issued, a cancellation was processed, a security setting was changed. Pre-action blocking with a human approval gate means the AI can draft the highest-confidence action it can, and a human sees the exact proposed action before anything reaches the customer. The audit trail records the approval decision, not just the outcome.
+
+**Why separate the Python engine from the Next.js gateway?**
+The retrieval-and-drafting engine (Python) is CPU-bound and depends on the knowledge base and policy rules. The control dashboard (Next.js) is I/O-bound and depends on the ticket queue and reviewer workflow. Separating them means each can be tested, scaled, and deployed independently. The JSON Schema contract is the only thing that must stay in sync between them.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
