@@ -10,6 +10,13 @@
 
 A governed AI support agent for B2B SaaS teams that drafts cited replies from approved knowledge, enforces policy rules before any action is taken, and records every decision in an audit trail — so AI reduces ticket load without silently making unsafe calls. The system pairs a Next.js 15 control dashboard with a deterministic Python retrieval-and-drafting engine, sharing typed JSON Schema contracts across both boundaries.
 
+## Business Problem
+
+Every B2B SaaS team wants AI to reduce ticket load. The moment the AI touches a refund, a cancellation, or a security configuration, the risk profile of a wrong answer is measured in lost revenue and broken customer trust.
+
+Most AI support tools treat this as a prompt quality problem. This system treats it as a **policy enforcement problem**: the AI drafts a reply, but the system decides whether the draft is safe to send — based on stale knowledge detection, contradiction checks, sensitive-topic classification, and explicit action blocking. A human approves anything that touches billing, cancellations, or security before it leaves the queue.
+
+**Three things that make it different:**
 - Keyword-intersection retrieval that is deterministic by design so unit tests can assert exact article ranking, not probabilistic output
 - A composable risk-flag layer that runs stale-doc detection, contradiction detection, sensitive-topic classification, and SLA scoring independently and folds them into a single policy decision
 - Contract-validated data exchange between the web layer and the agent engine, preventing silent type drift across the TypeScript/Python boundary
